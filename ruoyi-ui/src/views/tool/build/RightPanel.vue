@@ -867,7 +867,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped type="text/scss">
 .right-board {
   width: 350px;
   position: absolute;

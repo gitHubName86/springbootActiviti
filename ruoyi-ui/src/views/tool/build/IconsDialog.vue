@@ -71,7 +71,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" scoped type="text/scss">
 .icon-ul {
   margin: 0;
   padding: 0;

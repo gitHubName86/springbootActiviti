@@ -70,7 +70,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped type="text/scss">
 .panel-group {
   margin-top: 18px;
 

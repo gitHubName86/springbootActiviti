@@ -25,7 +25,7 @@
       </el-col>
     </el-row>
 
-    
+
   </div>
 </template>
 
@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped type="text/scss">
 .dashboard-editor-container {
   padding: 32px;
   background-color: rgb(240, 242, 245);

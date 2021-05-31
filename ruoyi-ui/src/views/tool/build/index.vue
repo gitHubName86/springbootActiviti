@@ -376,7 +376,7 @@ export default {
 }
 </script>
 
-<style lang='scss'>
+<style lang='scss' type="text/scss">
 body, html{
   margin: 0;
   padding: 0;

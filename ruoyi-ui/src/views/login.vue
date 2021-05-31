@@ -156,7 +156,7 @@
   };
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss" type="text/scss">
   .login {
     display: flex;
     justify-content: center;
