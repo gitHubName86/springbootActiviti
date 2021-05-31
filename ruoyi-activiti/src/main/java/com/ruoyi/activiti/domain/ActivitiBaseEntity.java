@@ -9,33 +9,51 @@ import java.util.Map;
 
 public class ActivitiBaseEntity extends BaseEntity {
 
-    /** 流程实例ID */
+    /**
+     * 流程实例ID
+     */
     @Excel(name = "流程实例ID")
     private String instanceId;
-    /** 申请人姓名 */
+    /**
+     * 申请人姓名
+     */
     private String applyUserName;
-    /** 标题 */
+    /**
+     * 标题
+     */
     @Excel(name = "标题")
     private String title;
 
-    /** 原因 */
+    /**
+     * 原因
+     */
     @Excel(name = "原因")
     private String reason;
 
-    /** 任务ID */
+    /**
+     * 任务ID
+     */
     private String taskId;
 
-    /** 任务名称 */
+    /**
+     * 任务名称
+     */
     private String taskName;
 
-    /** 办理时间 */
+    /**
+     * 办理时间
+     */
     private Date doneTime;
 
-    /** 创建人 */
+    /**
+     * 创建人
+     */
     private String createUserName;
 
 
-    /** 流程实例状态 1 激活 2 挂起 */
+    /**
+     * 流程实例状态 1 激活 2 挂起
+     */
     private String suspendState;
     private Map<String, Object> processParams;
 
@@ -88,38 +106,32 @@ public class ActivitiBaseEntity extends BaseEntity {
         this.suspendState = suspendState;
     }
 
-    public void setInstanceId(String instanceId)
-    {
+    public void setInstanceId(String instanceId) {
         this.instanceId = instanceId;
     }
 
-    public String getInstanceId()
-    {
+    public String getInstanceId() {
         return instanceId;
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
-    public void setReason(String reason)
-    {
+
+    public void setReason(String reason) {
         this.reason = reason;
     }
 
-    public String getReason()
-    {
+    public String getReason() {
         return reason;
     }
 
     public Map<String, Object> getProcessParams() {
-        if (processParams == null)
-        {
+        if (processParams == null) {
             processParams = new HashMap<>();
         }
         return processParams;

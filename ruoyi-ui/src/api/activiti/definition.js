@@ -10,21 +10,21 @@ export function listDefinition(query) {
 }
 
 
-
 // 转换流程定义为模型
 export function convert2Model(data) {
   return request({
     url: '/definition/convert2Model',
     method: 'post',
-    data:data
+    data: data
   })
 }
+
 // 挂起激活转换
 export function suspendOrActiveApply(data) {
   return request({
     url: '/definition/suspendOrActiveApply',
     method: 'post',
-    data:data
+    data: data
   })
 }
 

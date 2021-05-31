@@ -111,7 +111,7 @@ public class BizTodoItemServiceImpl implements IBizTodoItemService {
         todoItem.setTodoTime(DateUtils.getNowDate());
         List<Task> taskList = taskService.createTaskQuery().processInstanceId(instanceId).active().list();
         int counter = 0;
-        for (Task task: taskList) {
+        for (Task task : taskList) {
 
             // todoitem 去重
             BizTodoItem bizTodoItem = bizTodoItemMapper.selectTodoItemByTaskId(task.getId());
@@ -134,7 +134,7 @@ public class BizTodoItemServiceImpl implements IBizTodoItemService {
                 // 查询候选用户组
                 List<String> todoUserIdList = bizTodoItemMapper.selectTodoUserListByTaskId(task.getId());
                 if (!CollectionUtils.isEmpty(todoUserIdList)) {
-                    for (String todoUserId: todoUserIdList) {
+                    for (String todoUserId : todoUserIdList) {
                         SysUser todoUser = userMapper.selectUserByUserName(todoUserId);
                         newItem.setTodoUserId(todoUser.getUserName());
                         newItem.setTodoUserName(todoUser.getNickName());

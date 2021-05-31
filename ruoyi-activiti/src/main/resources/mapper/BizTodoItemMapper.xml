@@ -1,50 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.activiti.mapper.BizTodoItemMapper">
 
     <resultMap type="BizTodoItem" id="BizTodoItemResult">
-        <result property="id"    column="id"    />
-        <result property="itemName"    column="item_name"    />
-        <result property="itemContent"    column="item_content"    />
-        <result property="module"    column="module"    />
-        <result property="instanceId"    column="instance_id"    />
-        <result property="taskId"    column="task_id"    />
-        <result property="taskName"    column="task_name"    />
-        <result property="nodeName"    column="node_name"    />
-        <result property="isView"    column="is_view"    />
-        <result property="isHandle"    column="is_handle"    />
-        <result property="todoUserId"    column="todo_user_id"    />
-        <result property="todoUserName"    column="todo_user_name"    />
-        <result property="handleUserId"    column="handle_user_id"    />
-        <result property="handleUserName"    column="handle_user_name"    />
-        <result property="todoTime"    column="todo_time"    />
-        <result property="handleTime"    column="handle_time"    />
+        <result property="id" column="id"/>
+        <result property="itemName" column="item_name"/>
+        <result property="itemContent" column="item_content"/>
+        <result property="module" column="module"/>
+        <result property="instanceId" column="instance_id"/>
+        <result property="taskId" column="task_id"/>
+        <result property="taskName" column="task_name"/>
+        <result property="nodeName" column="node_name"/>
+        <result property="isView" column="is_view"/>
+        <result property="isHandle" column="is_handle"/>
+        <result property="todoUserId" column="todo_user_id"/>
+        <result property="todoUserName" column="todo_user_name"/>
+        <result property="handleUserId" column="handle_user_id"/>
+        <result property="handleUserName" column="handle_user_name"/>
+        <result property="todoTime" column="todo_time"/>
+        <result property="handleTime" column="handle_time"/>
     </resultMap>
 
     <sql id="selectBizTodoItemVo">
-        select id, item_name, item_content, module, instance_id, task_id, task_name, node_name, is_view, is_handle, todo_user_id, todo_user_name, handle_user_id, handle_user_name, todo_time, handle_time from biz_todo_item
+        select id,
+               item_name,
+               item_content, module, instance_id, task_id, task_name, node_name, is_view, is_handle, todo_user_id, todo_user_name, handle_user_id, handle_user_name, todo_time, handle_time
+        from biz_todo_item
     </sql>
 
     <select id="selectBizTodoItemList" parameterType="BizTodoItem" resultMap="BizTodoItemResult">
         <include refid="selectBizTodoItemVo"/>
         <where>
-            <if test="itemName != null  and itemName != ''"> and item_name like concat('%', #{itemName}, '%')</if>
-            <if test="itemContent != null  and itemContent != ''"> and item_content = #{itemContent}</if>
-            <if test="module != null  and module != ''"> and module = #{module}</if>
-            <if test="instanceId != null  and instanceId != ''"> and instance_id = #{instanceId}</if>
-            <if test="taskId != null  and taskId != ''"> and task_id = #{taskId}</if>
-            <if test="taskName != null  and taskName != ''"> and task_name like concat('%', #{taskName}, '%')</if>
-            <if test="nodeName != null  and nodeName != ''"> and node_name like concat('%', #{nodeName}, '%')</if>
-            <if test="isView != null  and isView != ''"> and is_view = #{isView}</if>
-            <if test="isHandle != null  and isHandle != ''"> and is_handle = #{isHandle}</if>
-            <if test="todoUserId != null and todoUserId != ''"> and todo_user_id like concat('%', #{todoUserId}, '%')</if>
-            <if test="todoUserName != null  and todoUserName != ''"> and todo_user_name like concat('%', #{todoUserName}, '%')</if>
-            <if test="handleUserId != null and handleUserId != ''"> and handle_user_id like concat('%', #{handleUserId}, '%')</if>
-            <if test="handleUserName != null  and handleUserName != ''"> and handle_user_name like concat('%', #{handleUserName}, '%')</if>
-            <if test="todoTime != null "> and todo_time = #{todoTime}</if>
-            <if test="handleTime != null "> and handle_time = #{handleTime}</if>
+            <if test="itemName != null  and itemName != ''">and item_name like concat('%', #{itemName}, '%')</if>
+            <if test="itemContent != null  and itemContent != ''">and item_content = #{itemContent}</if>
+            <if test="module != null  and module != ''">and module = #{module}</if>
+            <if test="instanceId != null  and instanceId != ''">and instance_id = #{instanceId}</if>
+            <if test="taskId != null  and taskId != ''">and task_id = #{taskId}</if>
+            <if test="taskName != null  and taskName != ''">and task_name like concat('%', #{taskName}, '%')</if>
+            <if test="nodeName != null  and nodeName != ''">and node_name like concat('%', #{nodeName}, '%')</if>
+            <if test="isView != null  and isView != ''">and is_view = #{isView}</if>
+            <if test="isHandle != null  and isHandle != ''">and is_handle = #{isHandle}</if>
+            <if test="todoUserId != null and todoUserId != ''">and todo_user_id like concat('%', #{todoUserId}, '%')
+            </if>
+            <if test="todoUserName != null  and todoUserName != ''">and todo_user_name like concat('%', #{todoUserName},
+                '%')
+            </if>
+            <if test="handleUserId != null and handleUserId != ''">and handle_user_id like concat('%', #{handleUserId},
+                '%')
+            </if>
+            <if test="handleUserName != null  and handleUserName != ''">and handle_user_name like concat('%',
+                #{handleUserName}, '%')
+            </if>
+            <if test="todoTime != null ">and todo_time = #{todoTime}</if>
+            <if test="handleTime != null ">and handle_time = #{handleTime}</if>
             <if test="params.todoItemStartTime != null and params.todoItemStartTime != ''"><!-- 开始时间检索 -->
                 and date_format(todo_time,'%y%m%d') &gt;= date_format(#{params.todoItemStartTime},'%y%m%d')
             </if>
@@ -57,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="params.handleEndTime != null and params.handleEndTime != ''"><!-- 结束时间检索 -->
                 and date_format(handle_time,'%y%m%d') &lt;= date_format(#{params.handleEndTime},'%y%m%d')
             </if>
-                order by todo_time desc
+            order by todo_time desc
         </where>
     </select>
 
@@ -84,7 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="handleUserName != null  and handleUserName != ''">handle_user_name,</if>
             <if test="todoTime != null ">todo_time,</if>
             <if test="handleTime != null ">handle_time,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="itemName != null  and itemName != ''">#{itemName},</if>
             <if test="itemContent != null  and itemContent != ''">#{itemContent},</if>
@@ -101,7 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="handleUserName != null  and handleUserName != ''">#{handleUserName},</if>
             <if test="todoTime != null ">#{todoTime},</if>
             <if test="handleTime != null ">#{handleTime},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateBizTodoItem" parameterType="BizTodoItem">
@@ -127,7 +137,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteBizTodoItemById" parameterType="Long">
-        delete from biz_todo_item where id = #{id}
+        delete
+        from biz_todo_item
+        where id = #{id}
     </delete>
 
     <delete id="deleteBizTodoItemByIds" parameterType="String">

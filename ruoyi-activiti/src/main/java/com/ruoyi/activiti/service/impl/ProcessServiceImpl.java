@@ -101,32 +101,30 @@ public class ProcessServiceImpl implements IProcessService {
     }
 
     @Override
-    public void complete(ActivitiBaseEntity activitiBaseEntity,String module) {
-        Map<String, Object> variables =new HashMap<String, Object>();
+    public void complete(ActivitiBaseEntity activitiBaseEntity, String module) {
+        Map<String, Object> variables = new HashMap<String, Object>();
         String comment = null;          // 批注
         boolean agree = true;
         try {
-        for(Map.Entry<String, Object> entry : activitiBaseEntity.getProcessParams().entrySet()){
-            String parameterName = entry.getKey();
-                    // 参数结构：B_name，B为类型，name为属性名称
-                    String[] parameter = parameterName.split("_");
-                    if (parameter.length == 2) {
-                        String paramValue = (String) entry.getValue();
-                        Object value = paramValue;
-                        if (parameter[0].equals("B")) {
-                            value = BooleanUtils.toBoolean(paramValue);
-                            agree = (boolean) value;
-                        } else if (parameter[0].equals("DT")) {
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            value = sdf.parse(paramValue);
-                        } else if (parameter[0].equals("COM")) {
-                            comment = paramValue;
-                        }
-                        variables.put(parameter[1], value);
+            for (Map.Entry<String, Object> entry : activitiBaseEntity.getProcessParams().entrySet()) {
+                String parameterName = entry.getKey();
+                // 参数结构：B_name，B为类型，name为属性名称
+                String[] parameter = parameterName.split("_");
+                if (parameter.length == 2) {
+                    String paramValue = (String) entry.getValue();
+                    Object value = paramValue;
+                    if (parameter[0].equals("B")) {
+                        value = BooleanUtils.toBoolean(paramValue);
+                        agree = (boolean) value;
+                    } else if (parameter[0].equals("DT")) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        value = sdf.parse(paramValue);
+                    } else if (parameter[0].equals("COM")) {
+                        comment = paramValue;
                     }
+                    variables.put(parameter[1], value);
                 }
-
-
+            }
 
 
             if (StringUtils.isNotEmpty(comment)) {
@@ -148,7 +146,7 @@ public class ProcessServiceImpl implements IProcessService {
             query.setTaskId(activitiBaseEntity.getTaskId());
             // 考虑到候选用户组，会有多个 todoitem 办理同个 task
             List<BizTodoItem> updateList = CollectionUtils.isEmpty(bizTodoItemService.selectBizTodoItemList(query)) ? null : bizTodoItemService.selectBizTodoItemList(query);
-            for (BizTodoItem update: updateList) {
+            for (BizTodoItem update : updateList) {
                 // 找到当前登录用户的 todoitem，置为已办
                 if (update.getTodoUserId().equals(SecurityUtils.getUsername())) {
                     update.setIsView("1");
@@ -163,7 +161,7 @@ public class ProcessServiceImpl implements IProcessService {
             }
 
             // 下一节点处理人待办事项
-            bizTodoItemService.insertTodoItem(activitiBaseEntity.getInstanceId(),activitiBaseEntity.getTitle(),activitiBaseEntity.getReason(), module);
+            bizTodoItemService.insertTodoItem(activitiBaseEntity.getInstanceId(), activitiBaseEntity.getTitle(), activitiBaseEntity.getReason(), module);
         } catch (Exception e) {
             logger.error("error on complete task {}, variables={}", new Object[]{activitiBaseEntity.getTaskId(), variables, e});
         }

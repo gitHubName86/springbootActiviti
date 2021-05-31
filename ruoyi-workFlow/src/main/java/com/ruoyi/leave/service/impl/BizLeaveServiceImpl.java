@@ -49,6 +49,7 @@ public class BizLeaveServiceImpl implements IBizLeaveService {
     private RuntimeService runtimeService;
     @Autowired
     private HistoryService historyService;
+
     /**
      * 查询请假流程
      *
@@ -80,7 +81,7 @@ public class BizLeaveServiceImpl implements IBizLeaveService {
         // PageHelper 仅对第一个 List 分页
         Page<BizLeave> list = (Page<BizLeave>) bizLeaveMapper.selectBizLeaveList(bizLeave);
         Page<BizLeave> returnList = new Page<>();
-        for (BizLeave leave: list) {
+        for (BizLeave leave : list) {
             SysUser sysUser = userMapper.selectUserByUserName(leave.getCreateBy());
             if (sysUser != null) {
                 leave.setCreateUserName(sysUser.getUserName());
@@ -169,6 +170,7 @@ public class BizLeaveServiceImpl implements IBizLeaveService {
 
     /**
      * 启动流程
+     *
      * @param entity
      * @param applyUserId
      * @return
@@ -243,8 +245,10 @@ public class BizLeaveServiceImpl implements IBizLeaveService {
 
         return list;
     }
+
     /**
      * 查询已办列表
+     *
      * @param bizLeave
      * @param userId
      * @return

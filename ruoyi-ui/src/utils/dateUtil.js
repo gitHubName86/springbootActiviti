@@ -5,9 +5,9 @@ export function calcTotalSecond(startDateStr, endDateStr) {
   return timeSub / 1000;
 }
 
-export function formatTotalDateSub (secondSub) {
+export function formatTotalDateSub(secondSub) {
   let days = Math.floor(secondSub / (24 * 3600));     // 计算出小时数
-  let leave1 = secondSub % (24*3600) ;                // 计算天数后剩余的毫秒数
+  let leave1 = secondSub % (24 * 3600);                // 计算天数后剩余的毫秒数
   let hours = Math.floor(leave1 / 3600);              // 计算相差分钟数
   let leave2 = leave1 % (3600);                       // 计算小时数后剩余的毫秒数
   let minutes = Math.floor(leave2 / 60);              // 计算相差秒数

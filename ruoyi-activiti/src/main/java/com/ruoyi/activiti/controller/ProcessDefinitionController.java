@@ -77,17 +77,16 @@ public class ProcessDefinitionController extends BaseController {
                 }
                 // p.s. 此时 FileUploadUtils.upload() 返回字符串 fileName 前缀为 Constants.RESOURCE_PREFIX，需剔除
 //                 详见: FileUploadUtils.getPathFileName(...)
-                String fileName = FileUploadUtils.upload(RuoYiConfig.getProfile()+ "/processDefiniton", file);
+                String fileName = FileUploadUtils.upload(RuoYiConfig.getProfile() + "/processDefiniton", file);
 
                 if (StringUtils.isNotBlank(fileName)) {
-                    String realFilePath = RuoYiConfig.getProfile()+ fileName.substring(Constants.RESOURCE_PREFIX.length());
+                    String realFilePath = RuoYiConfig.getProfile() + fileName.substring(Constants.RESOURCE_PREFIX.length());
                     processDefinitionService.deployProcessDefinition(realFilePath);
                     return AjaxResult.success();
                 }
             }
             return AjaxResult.error("不允许上传空文件！");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             log.error("上传流程定义文件失败！", e);
             return AjaxResult.error(e.getMessage());
         }
@@ -99,8 +98,7 @@ public class ProcessDefinitionController extends BaseController {
     public AjaxResult remove(String ids) {
         try {
             return toAjax(processDefinitionService.deleteProcessDeploymentByIds(ids));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return AjaxResult.error(e.getMessage());
         }
     }
@@ -114,7 +112,7 @@ public class ProcessDefinitionController extends BaseController {
 //        return util.exportExcel(list, "流程定义数据");
 //    }
 
-    @PostMapping( "/suspendOrActiveApply")
+    @PostMapping("/suspendOrActiveApply")
     @ResponseBody
     public AjaxResult suspendOrActiveApply(@RequestBody ProcessDefinition processDefinition) {
         processDefinitionService.suspendOrActiveApply(processDefinition.getId(), processDefinition.getSuspendState());
@@ -146,6 +144,7 @@ public class ProcessDefinitionController extends BaseController {
 
     /**
      * 转换流程定义为模型
+     *
      * @param processDefinitionId
      * @return
      * @throws UnsupportedEncodingException

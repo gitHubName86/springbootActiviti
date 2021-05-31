@@ -7,6 +7,7 @@ export function cancelApply(instanceId) {
     method: 'post'
   })
 }
+
 // 激活挂起
 export function suspendOrActiveApply(data) {
   return request({
@@ -15,14 +16,16 @@ export function suspendOrActiveApply(data) {
     data: data
   })
 }
+
 // 历史列表
 export function listHistory(instanceId) {
 
   return request({
-    url: '/process/listHistory/'+instanceId,
+    url: '/process/listHistory/' + instanceId,
     method: 'get'
   })
 }
+
 // 查询请假流程详细
 export function showVerifyDialog(id) {
   return request({

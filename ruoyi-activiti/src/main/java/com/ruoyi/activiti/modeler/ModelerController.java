@@ -86,7 +86,7 @@ public class ModelerController extends BaseController {
      */
     @RequestMapping(value = "/modeler/create")
     @ResponseBody
-    public AjaxResult create( @RequestBody ModelerVo modelerVo) {
+    public AjaxResult create(@RequestBody ModelerVo modelerVo) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             ObjectNode editorNode = objectMapper.createObjectNode();
@@ -163,12 +163,12 @@ public class ModelerController extends BaseController {
                 ByteArrayInputStream in = new ByteArrayInputStream(bpmnBytes);
                 String filename = bpmnModel.getMainProcess().getId() + ".bpmn";
 
-                File file  = new File(getAbsoluteFile(filename));
-                if(file.exists()){
+                File file = new File(getAbsoluteFile(filename));
+                if (file.exists()) {
                     file.delete();
                 }
                 FileOutputStream fos = new FileOutputStream(file);
-                fos.write(bpmnBytes,0,bpmnBytes.length);
+                fos.write(bpmnBytes, 0, bpmnBytes.length);
                 fos.flush();
                 fos.close();
                 return AjaxResult.success(filename);
@@ -188,12 +188,10 @@ public class ModelerController extends BaseController {
      *
      * @param filename 文件名称
      */
-    public String getAbsoluteFile(String filename)
-    {
+    public String getAbsoluteFile(String filename) {
         String downloadPath = RuoYiConfig.getDownloadPath() + filename;
         File desc = new File(downloadPath);
-        if (!desc.getParentFile().exists())
-        {
+        if (!desc.getParentFile().exists()) {
             desc.getParentFile().mkdirs();
         }
         return downloadPath;
@@ -207,8 +205,7 @@ public class ModelerController extends BaseController {
         try {
             repositoryService.deleteModel(ids);
             return AjaxResult.success();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return AjaxResult.error(e.getMessage());
         }
     }

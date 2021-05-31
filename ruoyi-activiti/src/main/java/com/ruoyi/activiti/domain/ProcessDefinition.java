@@ -37,7 +37,9 @@ public class ProcessDefinition extends BaseEntity {
     @Excel(name = "流程定义")
     private String resourceName;
 
-    /** 流程实例状态 1 激活 2 挂起 */
+    /**
+     * 流程实例状态 1 激活 2 挂起
+     */
     private String suspendState;
 
     private String suspendStateName;

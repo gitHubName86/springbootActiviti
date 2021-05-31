@@ -16,66 +16,98 @@ import java.util.Date;
 public class BizTodoItem extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** 主键 ID */
+    /**
+     * 主键 ID
+     */
     private Long id;
 
-    /** 事项标题 */
+    /**
+     * 事项标题
+     */
     @Excel(name = "事项标题")
     private String itemName;
 
-    /** 事项内容 */
+    /**
+     * 事项内容
+     */
     @Excel(name = "事项内容")
     private String itemContent;
 
-    /** 模块名称 (必须以 uri 一致) */
+    /**
+     * 模块名称 (必须以 uri 一致)
+     */
     @Excel(name = "模块名称")
     private String module;
 
-    /** 任务 ID */
+    /**
+     * 任务 ID
+     */
     @Excel(name = "任务 ID")
     private String taskId;
 
-    /** 流程实例 ID */
+    /**
+     * 流程实例 ID
+     */
     @Excel(name = "流程实例 ID")
     private String instanceId;
 
-    /** 任务名称 (必须以表单页面名称一致) */
+    /**
+     * 任务名称 (必须以表单页面名称一致)
+     */
     @Excel(name = "任务名称")
     private String taskName;
 
-    /** 节点名称 */
+    /**
+     * 节点名称
+     */
     @Excel(name = "节点名称")
     private String nodeName;
 
-    /** 是否查看 default 0 (0 否 1 是) */
+    /**
+     * 是否查看 default 0 (0 否 1 是)
+     */
     @Excel(name = "是否查看")
     private String isView;
 
-    /** 是否处理 default 0 (0 否 1 是) */
+    /**
+     * 是否处理 default 0 (0 否 1 是)
+     */
     @Excel(name = "是否处理")
     private String isHandle;
 
-    /** 待办人 ID */
+    /**
+     * 待办人 ID
+     */
     @Excel(name = "待办人 ID")
     private String todoUserId;
 
-    /** 待办人名称 */
+    /**
+     * 待办人名称
+     */
     @Excel(name = "待办人名称")
     private String todoUserName;
 
-    /** 处理人 ID */
+    /**
+     * 处理人 ID
+     */
     @Excel(name = "处理人 ID")
     private String handleUserId;
 
-    /** 处理人名称 */
+    /**
+     * 处理人名称
+     */
     @Excel(name = "处理人名称")
     private String handleUserName;
 
-    /** 通知时间 */
+    /**
+     * 通知时间
+     */
     @Excel(name = "通知时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date todoTime;
 
-    /** 处理时间 */
+    /**
+     * 处理时间
+     */
     @Excel(name = "处理时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date handleTime;
 
@@ -86,6 +118,7 @@ public class BizTodoItem extends BaseEntity {
     public Long getId() {
         return id;
     }
+
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
@@ -93,6 +126,7 @@ public class BizTodoItem extends BaseEntity {
     public String getItemName() {
         return itemName;
     }
+
     public void setItemContent(String itemContent) {
         this.itemContent = itemContent;
     }
@@ -100,6 +134,7 @@ public class BizTodoItem extends BaseEntity {
     public String getItemContent() {
         return itemContent;
     }
+
     public void setModule(String module) {
         this.module = module;
     }
@@ -107,6 +142,7 @@ public class BizTodoItem extends BaseEntity {
     public String getModule() {
         return module;
     }
+
     public void setTaskId(String taskId) {
         this.taskId = taskId;
     }
@@ -114,6 +150,7 @@ public class BizTodoItem extends BaseEntity {
     public String getTaskId() {
         return taskId;
     }
+
     public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
@@ -129,6 +166,7 @@ public class BizTodoItem extends BaseEntity {
     public String getTaskName() {
         return taskName;
     }
+
     public void setIsView(String isView) {
         this.isView = isView;
     }
@@ -136,6 +174,7 @@ public class BizTodoItem extends BaseEntity {
     public String getIsView() {
         return isView;
     }
+
     public void setIsHandle(String isHandle) {
         this.isHandle = isHandle;
     }
@@ -143,6 +182,7 @@ public class BizTodoItem extends BaseEntity {
     public String getIsHandle() {
         return isHandle;
     }
+
     public void setTodoUserId(String todoUserId) {
         this.todoUserId = todoUserId;
     }
@@ -150,6 +190,7 @@ public class BizTodoItem extends BaseEntity {
     public String getTodoUserId() {
         return todoUserId;
     }
+
     public void setTodoUserName(String todoUserName) {
         this.todoUserName = todoUserName;
     }
@@ -157,6 +198,7 @@ public class BizTodoItem extends BaseEntity {
     public String getTodoUserName() {
         return todoUserName;
     }
+
     public void setHandleUserId(String handleUserId) {
         this.handleUserId = handleUserId;
     }
@@ -164,6 +206,7 @@ public class BizTodoItem extends BaseEntity {
     public String getHandleUserId() {
         return handleUserId;
     }
+
     public void setHandleUserName(String handleUserName) {
         this.handleUserName = handleUserName;
     }
@@ -171,6 +214,7 @@ public class BizTodoItem extends BaseEntity {
     public String getHandleUserName() {
         return handleUserName;
     }
+
     public void setTodoTime(Date todoTime) {
         this.todoTime = todoTime;
     }
@@ -178,6 +222,7 @@ public class BizTodoItem extends BaseEntity {
     public Date getTodoTime() {
         return todoTime;
     }
+
     public void setHandleTime(Date handleTime) {
         this.handleTime = handleTime;
     }
@@ -196,22 +241,22 @@ public class BizTodoItem extends BaseEntity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("itemName", getItemName())
-            .append("itemContent", getItemContent())
-            .append("module", getModule())
-            .append("instanceId", getInstanceId())
-            .append("taskId", getTaskId())
-            .append("taskName", getTaskName())
-            .append("isView", getIsView())
-            .append("isHandle", getIsHandle())
-            .append("todoUserId", getTodoUserId())
-            .append("todoUserName", getTodoUserName())
-            .append("handleUserId", getHandleUserId())
-            .append("handleUserName", getHandleUserName())
-            .append("todoTime", getTodoTime())
-            .append("handleTime", getHandleTime())
-            .toString();
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("id", getId())
+                .append("itemName", getItemName())
+                .append("itemContent", getItemContent())
+                .append("module", getModule())
+                .append("instanceId", getInstanceId())
+                .append("taskId", getTaskId())
+                .append("taskName", getTaskName())
+                .append("isView", getIsView())
+                .append("isHandle", getIsHandle())
+                .append("todoUserId", getTodoUserId())
+                .append("todoUserName", getTodoUserName())
+                .append("handleUserId", getHandleUserId())
+                .append("handleUserName", getHandleUserName())
+                .append("todoTime", getTodoTime())
+                .append("handleTime", getHandleTime())
+                .toString();
     }
 }

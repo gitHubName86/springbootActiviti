@@ -13,15 +13,15 @@
 
 <!-- Group items -->
 <ul>
-    <li ng-repeat="item in group.paletteItems" class="stencil-item"
-        id="{{item.id}}"
-        title="{{item.description}}"
-        ng-model="draggedElement"
-        data-drag="true"
-        jqyoui-draggable="{onStart:'startDragCallback', onDrag:'dragCallback'}"
-        data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}">
-        
-        <img ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" width="16px;" height="16px;"/>
-        {{item.name}}
-    </li>
+  <li ng-repeat="item in group.paletteItems" class="stencil-item"
+      id="{{item.id}}"
+      title="{{item.description}}"
+      ng-model="draggedElement"
+      data-drag="true"
+      jqyoui-draggable="{onStart:'startDragCallback', onDrag:'dragCallback'}"
+      data-jqyoui-options="{revert: 'invalid', helper: 'clone', opacity : 0.5}">
+
+    <img ng-src="editor-app/stencilsets/bpmn2.0/icons/{{item.icon}}" width="16px;" height="16px;"/>
+    {{item.name}}
+  </li>
 </ul>

@@ -14,6 +14,7 @@ public interface IProcessService {
 
     /**
      * 查询审批历史列表
+     *
      * @param processInstanceId
      * @param historicActivity
      * @return
@@ -22,10 +23,11 @@ public interface IProcessService {
 
     /**
      * 提交申请
+     *
      * @param applyUserId 申请人
      * @param businessKey 业务表 id
-     * @param key 流程定义 key
-     * @param variables 流程变量
+     * @param key         流程定义 key
+     * @param variables   流程变量
      * @return
      */
     ProcessInstance submitApply(String applyUserId, String businessKey, String itemName, String itemConent, String key, Map<String, Object> variables);
@@ -38,6 +40,7 @@ public interface IProcessService {
 
     /**
      * 委托任务
+     *
      * @param taskId
      * @param delegateToUser
      */

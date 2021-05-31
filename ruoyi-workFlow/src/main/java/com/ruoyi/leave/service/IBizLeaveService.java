@@ -8,15 +8,14 @@ import org.activiti.engine.runtime.ProcessInstance;
 
 /**
  * 请假流程Service接口
- * 
+ *
  * @author ruoyi
  * @date 2020-09-17
  */
-public interface IBizLeaveService 
-{
+public interface IBizLeaveService {
     /**
      * 查询请假流程
-     * 
+     *
      * @param id 请假流程ID
      * @return 请假流程
      */
@@ -24,7 +23,7 @@ public interface IBizLeaveService
 
     /**
      * 查询请假流程列表
-     * 
+     *
      * @param bizLeave 请假流程
      * @return 请假流程集合
      */
@@ -32,7 +31,7 @@ public interface IBizLeaveService
 
     /**
      * 新增请假流程
-     * 
+     *
      * @param bizLeave 请假流程
      * @return 结果
      */
@@ -40,7 +39,7 @@ public interface IBizLeaveService
 
     /**
      * 修改请假流程
-     * 
+     *
      * @param bizLeave 请假流程
      * @return 结果
      */
@@ -48,7 +47,7 @@ public interface IBizLeaveService
 
     /**
      * 批量删除请假流程
-     * 
+     *
      * @param ids 需要删除的请假流程ID
      * @return 结果
      */
@@ -56,13 +55,15 @@ public interface IBizLeaveService
 
     /**
      * 删除请假流程信息
-     * 
+     *
      * @param id 请假流程ID
      * @return 结果
      */
     public int deleteBizLeaveById(Long id);
+
     /**
      * 启动流程
+     *
      * @param entity
      * @param applyUserId
      * @return
@@ -71,12 +72,15 @@ public interface IBizLeaveService
 
     /**
      * 查询我的待办列表
+     *
      * @param userId
      * @return
      */
     List<BizLeave> findTodoTasks(BizLeave leave, String userId);
+
     /**
      * 查询我的已办列表
+     *
      * @param userId
      * @return
      */

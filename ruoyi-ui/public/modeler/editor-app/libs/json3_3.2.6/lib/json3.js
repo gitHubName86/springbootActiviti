@@ -35,7 +35,8 @@
       // but clips the values returned by the date methods to the range of
       // signed 32-bit integers ([-2 ** 31, 2 ** 31 - 1]).
       isExtended.getUTCHours() == 10 && isExtended.getUTCMinutes() == 37 && isExtended.getUTCSeconds() == 6 && isExtended.getUTCMilliseconds() == 708;
-  } catch (exception) {}
+  } catch (exception) {
+  }
 
   // Internal: Determines whether the native `JSON.stringify` and `parse`
   // implementations are spec-compliant. Based on work by Ken Snyder.
@@ -103,7 +104,7 @@
               stringify([undef, getClass, null]) == "[null,null,null]" &&
               // Simple serialization test. FF 3.1b1 uses Unicode escape sequences
               // where character escape codes are expected (e.g., `\b` => `\u0008`).
-              stringify({ "a": [value, true, false, null, "\x00\b\n\f\r\t"] }) == serialized &&
+              stringify({"a": [value, true, false, null, "\x00\b\n\f\r\t"]}) == serialized &&
               // FF 3.1b1 and b2 ignore the `filter` and `width` arguments.
               stringify(null, value) === "1" &&
               stringify([1, 2], null, 1) == "[\n 1,\n 2\n]" &&
@@ -140,14 +141,16 @@
                 try {
                   // Safari <= 5.1.2 and FF 3.1b1 allow unescaped tabs in strings.
                   parseSupported = !parse('"\t"');
-                } catch (exception) {}
+                } catch (exception) {
+                }
                 if (parseSupported) {
                   try {
                     // FF 4.0 and 4.0.1 allow leading `+` signs and leading
                     // decimal points. FF 4.0, 4.0.1, and IE 9-10 also allow
                     // certain octal literals.
                     parseSupported = parse("01") !== 1;
-                  } catch (exception) {}
+                  } catch (exception) {
+                  }
                 }
                 if (parseSupported) {
                   try {
@@ -155,7 +158,8 @@
                     // points. These environments, along with FF 3.1b1 and 2,
                     // also allow trailing commas in JSON objects and arrays.
                     parseSupported = parse("1.") !== 1;
-                  } catch (exception) {}
+                  } catch (exception) {
+                  }
                 }
               }
             }
@@ -284,7 +288,7 @@
             }
           }
           // Manually invoke the callback for each non-enumerable property.
-          for (length = members.length; property = members[--length]; hasProperty.call(object, property) && callback(property));
+          for (length = members.length; property = members[--length]; hasProperty.call(object, property) && callback(property)) ;
         };
       } else if (size == 2) {
         // Safari <= 2.0.4 enumerates shadowed properties twice.
@@ -361,7 +365,13 @@
           // If the character is a control character, append its Unicode or
           // shorthand escape sequence; otherwise, append the character as-is.
           switch (charCode) {
-            case 8: case 9: case 10: case 12: case 13: case 34: case 92:
+            case 8:
+            case 9:
+            case 10:
+            case 12:
+            case 13:
+            case 34:
+            case 92:
               result += Escapes[charCode];
               break;
             default:
@@ -378,11 +388,13 @@
       // Internal: Recursively serializes an object. Implements the
       // `Str(key, holder)`, `JO(value)`, and `JA(value)` operations.
       var serialize = function (property, object, callback, properties, whitespace, indentation, stack) {
-        var value, className, year, month, date, time, hours, minutes, seconds, milliseconds, results, element, index, length, prefix, result;
+        var value, className, year, month, date, time, hours, minutes, seconds, milliseconds, results, element, index,
+          length, prefix, result;
         try {
           // Necessary for host object support.
           value = object[property];
-        } catch (exception) {}
+        } catch (exception) {
+        }
         if (typeof value == "object" && value) {
           className = getClass.call(value);
           if (className == dateClass && !isProperty.call(value, "toJSON")) {
@@ -395,8 +407,8 @@
                 // seconds, and milliseconds if the `getUTC*` methods are
                 // buggy. Adapted from @Yaffle's `date-shim` project.
                 date = floor(value / 864e5);
-                for (year = floor(date / 365.2425) + 1970 - 1; getDay(year + 1, 0) <= date; year++);
-                for (month = floor((date - getDay(year, 0)) / 30.42); getDay(year, month + 1) <= date; month++);
+                for (year = floor(date / 365.2425) + 1970 - 1; getDay(year + 1, 0) <= date; year++) ;
+                for (month = floor((date - getDay(year, 0)) / 30.42); getDay(year, month + 1) <= date; month++) ;
                 date = 1 + date - getDay(year, month);
                 // The `time` value specifies the time within the day (see ES
                 // 5.1 section 15.9.1.2). The formula `(A % B + B) % B` is used
@@ -513,7 +525,7 @@
           } else if (className == arrayClass) {
             // Convert the property names array into a makeshift set.
             properties = {};
-            for (var index = 0, length = filter.length, value; index < length; value = filter[index++], ((className = getClass.call(value)), className == stringClass || className == numberClass) && (properties[value] = 1));
+            for (var index = 0, length = filter.length, value; index < length; value = filter[index++], ((className = getClass.call(value)), className == stringClass || className == numberClass) && (properties[value] = 1)) ;
           }
         }
         if (width) {
@@ -521,7 +533,7 @@
             // Convert the `width` to an integer and create a string containing
             // `width` number of space characters.
             if ((width -= width % 1) > 0) {
-              for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ");
+              for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ") ;
             }
           } else if (className == stringClass) {
             whitespace = width.length <= 10 ? width : width.slice(0, 10);
@@ -555,7 +567,7 @@
       var Index, Source;
 
       // Internal: Resets the parser state and throws a `SyntaxError`.
-      var abort = function() {
+      var abort = function () {
         Index = Source = null;
         throw SyntaxError();
       };
@@ -568,12 +580,20 @@
         while (Index < length) {
           charCode = source.charCodeAt(Index);
           switch (charCode) {
-            case 9: case 10: case 13: case 32:
+            case 9:
+            case 10:
+            case 13:
+            case 32:
               // Skip whitespace tokens, including tabs, carriage returns, line
               // feeds, and space characters.
               Index++;
               break;
-            case 123: case 125: case 91: case 93: case 58: case 44:
+            case 123:
+            case 125:
+            case 91:
+            case 93:
+            case 58:
+            case 44:
               // Parse a punctuator token (`{`, `}`, `[`, `]`, `:`, or `,`) at
               // the current position.
               value = charIndexBuggy ? source.charAt(Index) : source[Index];
@@ -596,7 +616,14 @@
                   // escape sequence.
                   charCode = source.charCodeAt(++Index);
                   switch (charCode) {
-                    case 92: case 34: case 47: case 98: case 116: case 110: case 102: case 114:
+                    case 92:
+                    case 34:
+                    case 47:
+                    case 98:
+                    case 116:
+                    case 110:
+                    case 102:
+                    case 114:
                       // Revive escaped control characters.
                       value += Unescapes[charCode];
                       Index++;
@@ -662,13 +689,13 @@
                 }
                 isSigned = false;
                 // Parse the integer component.
-                for (; Index < length && ((charCode = source.charCodeAt(Index)), charCode >= 48 && charCode <= 57); Index++);
+                for (; Index < length && ((charCode = source.charCodeAt(Index)), charCode >= 48 && charCode <= 57); Index++) ;
                 // Floats cannot contain a leading decimal point; however, this
                 // case is already accounted for by the parser.
                 if (source.charCodeAt(Index) == 46) {
                   position = ++Index;
                   // Parse the decimal component.
-                  for (; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
+                  for (; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++) ;
                   if (position == Index) {
                     // Illegal trailing decimal.
                     abort();
@@ -686,7 +713,7 @@
                     Index++;
                   }
                   // Parse the exponential component.
-                  for (position = Index; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
+                  for (position = Index; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++) ;
                   if (position == Index) {
                     // Illegal empty exponent.
                     abort();
@@ -736,7 +763,7 @@
           if (value == "[") {
             // Parses a JSON array, returning a new JavaScript array.
             results = [];
-            for (;; hasMembers || (hasMembers = true)) {
+            for (; ; hasMembers || (hasMembers = true)) {
               value = lex();
               // A closing square bracket marks the end of the array literal.
               if (value == "]") {
@@ -767,7 +794,7 @@
           } else if (value == "{") {
             // Parses a JSON object, returning a new JavaScript object.
             results = {};
-            for (;; hasMembers || (hasMembers = true)) {
+            for (; ; hasMembers || (hasMembers = true)) {
               value = lex();
               // A closing curly brace marks the end of the object literal.
               if (value == "}") {
@@ -804,7 +831,7 @@
       };
 
       // Internal: Updates a traversed object member.
-      var update = function(source, property, callback) {
+      var update = function (source, property, callback) {
         var element = walk(source, property, callback);
         if (element === undef) {
           delete source[property];

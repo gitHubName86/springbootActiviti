@@ -10,7 +10,6 @@ export function listModeler(query) {
 }
 
 
-
 // 新增Modeler
 export function addModeler(data) {
   return request({
@@ -33,7 +32,7 @@ export function delModeler(id) {
 // 导出Modeler
 export function exportModeler(id) {
   return request({
-    url: '/modeler/export/'+id,
+    url: '/modeler/export/' + id,
     method: 'get'
   })
 }
@@ -41,7 +40,7 @@ export function exportModeler(id) {
 // 配置Modeler
 export function deployModeler(modelId) {
   return request({
-    url: '/modeler/deploy/'+modelId,
+    url: '/modeler/deploy/' + modelId,
     method: 'get'
   })
 }

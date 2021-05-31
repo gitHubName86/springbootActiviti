@@ -44,8 +44,7 @@ public class ActIdUserController extends BaseController {
      */
     @GetMapping("/list")
     @ResponseBody
-    public TableDataInfo list(ActIdUser query)
-    {
+    public TableDataInfo list(ActIdUser query) {
         PageDomain pageDomain = TableSupport.buildPageRequest();
         Integer pageNum = pageDomain.getPageNum();
         Integer pageSize = pageDomain.getPageSize();
@@ -65,7 +64,7 @@ public class ActIdUserController extends BaseController {
         list.setTotal(userQuery.count());
         list.setPageNum(pageNum);
         list.setPageSize(pageSize);
-        for (User user: userList) {
+        for (User user : userList) {
             ActIdUser idUser = new ActIdUser();
             idUser.setId(user.getId());
             idUser.setFirst(user.getFirstName());

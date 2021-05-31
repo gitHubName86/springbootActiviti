@@ -21,5 +21,5 @@
 var ACTIVITI = ACTIVITI || {};
 
 ACTIVITI.CONFIG = {
-	'contextRoot' : localStorage.getItem("VUE_APP_BASE_API")+'/modeler',
+  'contextRoot': localStorage.getItem("VUE_APP_BASE_API") + '/modeler',
 };

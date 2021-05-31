@@ -33,38 +33,38 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ModelEditorJsonRestResource implements ModelDataJsonConstants {
 
-  protected static final Logger LOGGER = LoggerFactory.getLogger(ModelEditorJsonRestResource.class);
+    protected static final Logger LOGGER = LoggerFactory.getLogger(ModelEditorJsonRestResource.class);
 
-  @Autowired
-  private RepositoryService repositoryService;
+    @Autowired
+    private RepositoryService repositoryService;
 
-  @Autowired
-  private ObjectMapper objectMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
 
-  @RequestMapping(value="/modeler/model/{modelId}/json", method = RequestMethod.GET, produces = "application/json")
-  public ObjectNode getEditorJson(@PathVariable String modelId) {
-    ObjectNode modelNode = null;
+    @RequestMapping(value = "/modeler/model/{modelId}/json", method = RequestMethod.GET, produces = "application/json")
+    public ObjectNode getEditorJson(@PathVariable String modelId) {
+        ObjectNode modelNode = null;
 
-    Model model = repositoryService.getModel(modelId);
+        Model model = repositoryService.getModel(modelId);
 
-    if (model != null) {
-      try {
-        if (StringUtils.isNotEmpty(model.getMetaInfo())) {
-          modelNode = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
-        } else {
-          modelNode = objectMapper.createObjectNode();
-          modelNode.put(MODEL_NAME, model.getName());
+        if (model != null) {
+            try {
+                if (StringUtils.isNotEmpty(model.getMetaInfo())) {
+                    modelNode = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
+                } else {
+                    modelNode = objectMapper.createObjectNode();
+                    modelNode.put(MODEL_NAME, model.getName());
+                }
+                modelNode.put(MODEL_ID, model.getId());
+                ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(
+                        new String(repositoryService.getModelEditorSource(model.getId()), "utf-8"));
+                modelNode.put("model", editorJsonNode);
+
+            } catch (Exception e) {
+                LOGGER.error("Error creating model JSON", e);
+                throw new ActivitiException("Error creating model JSON", e);
+            }
         }
-        modelNode.put(MODEL_ID, model.getId());
-        ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(
-            new String(repositoryService.getModelEditorSource(model.getId()), "utf-8"));
-        modelNode.put("model", editorJsonNode);
-
-      } catch (Exception e) {
-        LOGGER.error("Error creating model JSON", e);
-        throw new ActivitiException("Error creating model JSON", e);
-      }
+        return modelNode;
     }
-    return modelNode;
-  }
 }

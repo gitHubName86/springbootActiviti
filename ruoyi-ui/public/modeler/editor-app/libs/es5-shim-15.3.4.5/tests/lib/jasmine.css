@@ -4,15 +4,15 @@ body {
 
 
 .jasmine_reporter a:visited, .jasmine_reporter a {
-  color: #303; 
+  color: #303;
 }
 
 .jasmine_reporter a:hover, .jasmine_reporter a:active {
-  color: blue; 
+  color: blue;
 }
 
 .run_spec {
-  float:right;
+  float: right;
   padding-right: 5px;
   font-size: .8em;
   text-decoration: none;
@@ -50,8 +50,6 @@ body {
 }
 
 
-
-
 .suite {
   border: 1px outset gray;
   margin: 5px 0;
@@ -59,7 +57,7 @@ body {
 }
 
 .suite .suite {
-  margin: 5px; 
+  margin: 5px;
 }
 
 .suite.passed {
@@ -118,7 +116,7 @@ body {
 
 
 /*.resultMessage {*/
-  /*white-space: pre;*/
+/*white-space: pre;*/
 /*}*/
 
 .resultMessage span.result {
@@ -154,7 +152,7 @@ body {
 
 
 #jasmine_content {
-  position:fixed;
+  position: fixed;
   right: 100%;
 }
 

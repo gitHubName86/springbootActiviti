@@ -27,8 +27,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/activiti/actIdGroup")
-public class ActIdGroupController extends BaseController
-{
+public class ActIdGroupController extends BaseController {
 
 
     @Autowired
@@ -40,8 +39,7 @@ public class ActIdGroupController extends BaseController
      */
     @GetMapping("/list")
     @ResponseBody
-    public TableDataInfo list(ActIdGroup query)
-    {
+    public TableDataInfo list(ActIdGroup query) {
         PageDomain pageDomain = TableSupport.buildPageRequest();
         Integer pageNum = pageDomain.getPageNum();
         Integer pageSize = pageDomain.getPageSize();
@@ -58,7 +56,7 @@ public class ActIdGroupController extends BaseController
         list.setTotal(groupQuery.count());
         list.setPageNum(pageNum);
         list.setPageSize(pageSize);
-        for (Group group: groupList) {
+        for (Group group : groupList) {
             ActIdGroup idGroup = new ActIdGroup();
             idGroup.setId(group.getId());
             idGroup.setName(group.getName());

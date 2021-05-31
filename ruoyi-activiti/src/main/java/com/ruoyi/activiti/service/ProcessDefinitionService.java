@@ -34,6 +34,7 @@ public class ProcessDefinitionService {
 
     /**
      * 分页查询流程定义文件
+     *
      * @return
      */
     public Page<com.ruoyi.activiti.domain.ProcessDefinition> listProcessDefinition(com.ruoyi.activiti.domain.ProcessDefinition processDefinition) {
@@ -63,7 +64,7 @@ public class ProcessDefinitionService {
         } else {
             processDefinitionList = processDefinitionQuery.list();
         }
-        for (ProcessDefinition definition: processDefinitionList) {
+        for (ProcessDefinition definition : processDefinitionList) {
             ProcessDefinitionEntityImpl entityImpl = (ProcessDefinitionEntityImpl) definition;
             com.ruoyi.activiti.domain.ProcessDefinition entity = new com.ruoyi.activiti.domain.ProcessDefinition();
             entity.setId(definition.getId());
@@ -108,7 +109,7 @@ public class ProcessDefinitionService {
     public int deleteProcessDeploymentByIds(String deploymentIds) throws Exception {
         String[] deploymentIdsArr = Convert.toStrArray(deploymentIds);
         int counter = 0;
-        for (String deploymentId: deploymentIdsArr) {
+        for (String deploymentId : deploymentIdsArr) {
             List<ProcessInstance> instanceList = runtimeService.createProcessInstanceQuery()
                     .deploymentId(deploymentId)
                     .list();

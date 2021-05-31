@@ -51,7 +51,6 @@ public class BizLeaveController extends BaseController {
     }
 
 
-
     /**
      * 导出请假流程列表
      */
@@ -113,7 +112,7 @@ public class BizLeaveController extends BaseController {
      * 提交申请
      */
     @Log(title = "请假业务", businessType = BusinessType.UPDATE)
-    @PostMapping( "/submitApply/{id}")
+    @PostMapping("/submitApply/{id}")
     @ResponseBody
     public AjaxResult submitApply(@PathVariable Long id) {
         BizLeave leave = bizLeaveService.selectBizLeaveById(id);
@@ -124,6 +123,7 @@ public class BizLeaveController extends BaseController {
 
     /**
      * 我的待办列表
+     *
      * @return
      */
     @GetMapping("/taskList")
@@ -136,6 +136,7 @@ public class BizLeaveController extends BaseController {
 
     /**
      * 我的已办列表
+     *
      * @param bizLeave
      * @return
      */
